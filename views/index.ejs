@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Player</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div id="player">
+      <h1 id="video-title"></h1>
+      <video id="video" width="640" height="360" controls>
+        <source src="" type="video/mp4">
+      </video>
+    </div>
+    <div id="playlist">
+      <ul>
+        <% for (var i = 0; i < playlist.length; i++) { %>
+          <li><a href="#" onclick="playVideo('<%= playlist[i].file %>', '<%= playlist[i].title %>')"><%= playlist[i].title %></a></li>
+        <% } %>
+      </ul>
+      <button id="minimize-btn" onclick="minimizePlaylist()">-</button>
+    </div>
+    <button id="playlist-btn" onclick="togglePlaylist()">Playlist</button>
+
+    <script>
+      function playVideo(file, title) {
+  var video = document.getElementById('video');
+  var videoTitle = document.getElementById('video-title');
+  video.src = file;
+  video.load();
+  video.play();
+  videoTitle.innerHTML = title;
+
+  // hide title after 5 seconds
+  videoTitle.style.display = 'block'; // make sure title is visible initially
+  var timeoutId = setTimeout(function() {
+    videoTitle.style.display = 'none';
+  }, 5000);
+
+  // reset timeout when video is played
+  video.addEventListener('play', function() {
+    clearTimeout(timeoutId);
+    videoTitle.style.display = 'block'; // make sure title is visible when video is played
+    timeoutId = setTimeout(function() {
+      videoTitle.style.display = 'none';
+    }, 5000);
+  });
+}
+
+
+      function togglePlaylist() {
+        var playlist = document.getElementById('playlist');
+        var btn = document.getElementById('playlist-btn');
+        if (playlist.style.display === 'block') {
+          playlist.style.display = 'none';
+          btn.innerHTML = 'Playlist';
+        } else {
+          playlist.style.display = 'block';
+          btn.innerHTML = 'Close Playlist';
+        }
+      }
+
+      function minimizePlaylist() {
+        var playlist = document.getElementById('playlist');
+        var minimizeBtn = document.getElementById('minimize-btn');
+        if (playlist.style.width === '200px') {
+          playlist.style.width = '50px';
+          minimizeBtn.innerHTML = '+';
+        } else {
+          playlist.style.width = '200px';
+          minimizeBtn.innerHTML = '-';
+        }
+      }
+    </script>
+  </body>
+  </html>
+  
