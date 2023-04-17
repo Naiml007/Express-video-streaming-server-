@@ -6,10 +6,16 @@
 This site was built using [REPLIT](https://replit.com/@Naiml007/Express-video-streaming-server/).
 
 
-Upload videos in assets  
-Todo list
-Add post feature  
-Add ez UI 
-• 
-• 
-•
+Upload videos in assets 
+
+# Todo list
+- [ ] Add post feature  
+- [ ] Add ez UI 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+
+
+
+@Naiml007 :+1: This repo looks great - it's ready to merge! :shipit:
